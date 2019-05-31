@@ -1,0 +1,28 @@
+- id: go-test
+  name: 'Go tests'
+  entry: run-go-test.sh
+  types: [go]
+  language: 'script'
+  pass_filenames: false
+  minimum_pre_commit_version: 0.15.0
+  description: "Runs `go test ./...` at the repo root"
+
+- id: goimports
+  name: 'Check Go imports'
+  entry: run-go-imports.sh
+  types: [go]
+  language: 'script'
+  pass_filenames: true
+  minimum_pre_commit_version: 0.15.0
+  description: "Runs `goimports` on changed files"
+  require_serial: true
+  exclude: 'vendor/'
+
+- id: dep-check
+  name: 'dep-check'
+  entry: run-dep-check.sh
+  types: [go]
+  language: 'script'
+  pass_filenames: false
+  minimum_pre_commit_version: 0.15.0
+  description: "Runs `dep check`, ensuring all imports are vendored"
