@@ -43,4 +43,4 @@
   always_run: true
   language: 'script'
   minimum_pre_commit_version: 0.15.0
-  description: "Checks branch names adhere to the regex ^(feature|bugfix|release|hotfix)\/[a-z0-9._-]+$"
+  description: "Checks branch names begin with (feature|bugfix|release|hotfix)"
