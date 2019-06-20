@@ -36,3 +36,11 @@
   minimum_pre_commit_version: 0.15.0
   exclude: 'vendor/'
   description: "Checks changes contain only TODOs with JIRA tags"
+
+- id: branch-name-check
+  name: 'branch name begin with (feature|bugfix|release|hotfix)'
+  entry: run-branch-name-check.sh
+  always_run: true
+  language: 'script'
+  minimum_pre_commit_version: 0.15.0
+  description: "Checks branch names adhere to the regex ^(feature|bugfix|release|hotfix)\/[a-z0-9._-]+$"
