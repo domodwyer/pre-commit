@@ -7,7 +7,7 @@ Hooks:
 * `goimports`: ensure all the imports are included
 * `dep-check`: ensure all your 3rd party packages are vendored (see [dep])
 * `todo-jira-check`: ensure all TODO comments reference a JIRA ticket
-* `branch-name-check`: Checks branch names adhere to the regex ^(feature|bugfix|release|hotfix)\/[a-z0-9._-]+$
+* `branch-name-check`: Checks branch names adhere to the regex `^(feature|bugfix|release|hotfix)\/.+`
 
 ## Example config
 
