@@ -40,8 +40,7 @@
 - id: branch-name-check
   name: 'branch name begin with (feature|bugfix|release|hotfix)'
   entry: run-branch-name-check.sh
-  types: [text]
+  always_run: true
   language: 'script'
-  pass_filenames: true
   minimum_pre_commit_version: 0.15.0
   description: "Checks branch names adhere to the regex ^(feature|bugfix|release|hotfix)\/[a-z0-9._-]+$"
