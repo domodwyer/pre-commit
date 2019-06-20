@@ -47,5 +47,9 @@ prefixed by `#` or `//`) that do not reference a JIRA ticket. A valid TODO is in
 the form: `TODO(DEV-4242)`, where the `DEV` tag is configurable, and `4242` is
 the ticket number.
 
+## Adding new hooks
+
+When adding new hooks you can run `pre-commit try-repo .` for a quick syntax check.
+
 [`pre-commit`]: https://pre-commit.com
 [dep]: https://github.com/golang/dep
