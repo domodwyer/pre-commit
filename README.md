@@ -15,7 +15,7 @@ Hooks:
 ```yaml
 repos:
   - repo: https://github.com/domodwyer/pre-commit
-    rev: v1.0.0
+    rev: master
     hooks:
       - id: go-test
         stages: [commit, push]
@@ -36,6 +36,10 @@ repos:
       - id: todo-jira-check                # Requires python
         stages: [commit, push, manual]
         args: ["--tag=DEV"]                # JIRA ticket tag (defaults to DEV)
+      
+      - id: find-branch-todos
+        stages: [post-checkout, manual]
+        args: ["DEV"]                      # JIRA ticket tag
 ```
 
 ## Tagged TODOs
