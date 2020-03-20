@@ -37,6 +37,15 @@
   exclude: 'vendor/'
   description: "Checks changes contain only TODOs with JIRA tags"
 
+- id: find-branch-todos
+  name: 'Shows TODOs for the current branch'
+  entry: run-find-branch-todos.sh
+  always_run: true
+  language: 'script'
+  pass_filenames: false
+  minimum_pre_commit_version: 0.15.0
+  description: 'Prints any TODOs tagged with the ticket reference in the current branch name'
+
 - id: branch-name-check
   name: 'Checks branch names obeys the following regex: ^(feature|bugfix|release|hotfix)\/.+'
   entry: run-branch-name-check.sh
