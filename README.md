@@ -6,8 +6,9 @@ Hooks:
 * `go-test`: runs `go test ./...` at the repo root
 * `goimports`: ensure all the imports are included
 * `dep-check`: ensure all your 3rd party packages are vendored (see [dep])
+* `branch-name-check`: checks branch names adhere to the regex `^(feature|bugfix|release|hotfix)\/.+`
 * `todo-jira-check`: ensure all TODO comments reference a JIRA ticket
-* `branch-name-check`: Checks branch names adhere to the regex `^(feature|bugfix|release|hotfix)\/.+`
+* `find-branch-todos`: show all TODOs tagged with the ticket reference in the branch name
 
 ## Example config
 
@@ -37,7 +38,7 @@ repos:
         args: ["--tag=DEV"]                # JIRA ticket tag (defaults to DEV)
 ```
 
-### TODO JIRAs
+## Tagged TODOs
 
 New TODOs introduced into the codebase should be tracked in JIRA so they're
 eventually done!
@@ -47,9 +48,14 @@ prefixed by `#` or `//`) that do not reference a JIRA ticket. A valid TODO is in
 the form: `TODO(DEV-4242)`, where the `DEV` tag is configurable, and `4242` is
 the ticket number.
 
-## Adding new hooks
+The `find-branch-todos` is useful as a [`post-checkout`] hook to print all TODOs
+tagged with the ticket reference in the branch name. If you checkout a branch
+called `feature/DEV-4242-bananas`, all `TODO(DEV-4242)` comments will be shown.
+
+### Adding new hooks
 
 When adding new hooks you can run `pre-commit try-repo .` for a quick syntax check.
 
 [`pre-commit`]: https://pre-commit.com
 [dep]: https://github.com/golang/dep
+[`post-checkout`]: https://git-scm.com/docs/githooks#_post_checkout
