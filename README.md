@@ -9,6 +9,9 @@ Hooks:
 * `branch-name-check`: checks branch names adhere to the regex `^(feature|bugfix|release|hotfix)\/.+`
 * `todo-jira-check`: ensure all TODO comments reference a JIRA ticket
 * `find-branch-todos`: show all TODOs tagged with the ticket reference in the branch name
+* `golangci-lint`: a copy of the [official lint
+  config](https://github.com/golangci/golangci-lint/commit/09677d574ea6cd05141022aa90b88b6598bfa1a1)
+  without forcing the `--fix` argument
 
 ## Example config
 
@@ -40,6 +43,12 @@ repos:
       - id: find-branch-todos
         stages: [post-checkout, manual]
         args: ["DEV"]                      # JIRA ticket tag
+
+      - id: golangci-lint
+        args: [--new-from-rev=origin/master]
+        stages: [commit, push]
+        types: [go]
+        exclude: \.pb.go$
 ```
 
 ## Tagged TODOs

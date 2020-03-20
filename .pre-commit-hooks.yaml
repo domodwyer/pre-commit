@@ -53,3 +53,14 @@
   language: 'script'
   minimum_pre_commit_version: 0.15.0
   description: 'Checks branch names obeys the following regex: ^(feature|bugfix|release|hotfix)\/.+'
+
+# A copy of
+# https://github.com/golangci/golangci-lint/commit/09677d574ea6cd05141022aa90b88b6598bfa1a1
+# without --fix forced on users.
+- id: golangci-lint
+  name: golangci-lint
+  description: Static analysis for Go code
+  entry: golangci-lint run
+  types: [go]
+  language: golang
+  pass_filenames: false
