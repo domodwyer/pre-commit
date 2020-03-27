@@ -1,4 +1,4 @@
-#!/usr/bin/env python -s
+#!/usr/bin/env python3 -s
 
 # Searches passed files for TODO comments.
 #
