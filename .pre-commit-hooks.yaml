@@ -18,7 +18,7 @@
   require_serial: true
   exclude: 'vendor/'
 
-- id: dep-check
+- id: go-dep-check
   name: 'dep-check'
   entry: run-dep-check.sh
   types: [go]
@@ -27,7 +27,7 @@
   minimum_pre_commit_version: 0.15.0
   description: "Runs `dep check`, ensuring all imports are vendored"
 
-- id: todo-jira-check
+- id: todo-tagged-jira
   name: 'TODOs have JIRA tags'
   entry: todo-jira-check.py
   types: [text]
@@ -37,8 +37,8 @@
   exclude: 'vendor/'
   description: "Checks changes contain only TODOs with JIRA tags"
 
-- id: find-branch-todos
-  name: 'Shows TODOs for the current branch'
+- id: todo-branch-tags
+  name: 'TODOs for the current branch'
   entry: run-find-branch-todos.sh
   always_run: true
   language: 'script'

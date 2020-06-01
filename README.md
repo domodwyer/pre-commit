@@ -3,12 +3,12 @@
 This is a set of [`pre-commit`] hooks for (primarily Go) development.
 
 Hooks:
+* `todo-tagged-jira`: ensure all TODO comments reference a JIRA ticket
+* `todo-branch-tags`: show all TODOs tagged with the ticket reference in the branch name
 * `go-test`: runs `go test ./...` at the repo root
-* `goimports`: ensure all the imports are included
-* `dep-check`: ensure all your 3rd party packages are vendored (see [dep])
+* `goimports`: ensure all the Go imports are included and ordered
+* `go-dep-check`: ensure all your 3rd party Go packages are vendored (see [dep])
 * `branch-name-check`: checks branch names adhere to the regex `^(feature|bugfix|release|hotfix)\/.+`
-* `todo-jira-check`: ensure all TODO comments reference a JIRA ticket
-* `find-branch-todos`: show all TODOs tagged with the ticket reference in the branch name
 * `golangci-lint`: a copy of the [official lint
   config](https://github.com/golangci/golangci-lint/commit/09677d574ea6cd05141022aa90b88b6598bfa1a1)
   without forcing the `--fix` argument
@@ -32,17 +32,20 @@ repos:
         exclude: \.pb.go$                  # Ignore generated protobuf files
         args: ["-local=itsallbroken.com"]  # Separate local imports
       
-      - id: dep-check
+      - id: go-dep-check
         stages: [push, manual]
         types: [go]
       
-      - id: todo-jira-check                # Requires python
+      - id: todo-tagged-jira               # Requires python
         stages: [commit, push, manual]
         args: ["--tag=DEV"]                # JIRA ticket tag (defaults to DEV)
       
-      - id: find-branch-todos
-        stages: [post-checkout, manual]
+      - id: todo-branch-tags
+        stages: [post-checkout, manual]    # Show tags when checking out
         args: ["DEV"]                      # JIRA ticket tag
+      
+      - id: branch-name-check
+        stages: [push]
 
       - id: golangci-lint
         args: [--new-from-rev=origin/master]
@@ -56,12 +59,12 @@ repos:
 New TODOs introduced into the codebase should be tracked in JIRA so they're
 eventually done!
 
-The `todo-jira-check` hook searches changed files for `TODO` comments (lines
+The `todo-tagged-jira` hook searches changed files for `TODO` comments (lines
 prefixed by `#` or `//`) that do not reference a JIRA ticket. A valid TODO is in
 the form: `TODO(DEV-4242)`, where the `DEV` tag is configurable, and `4242` is
 the ticket number.
 
-The `find-branch-todos` is useful as a [`post-checkout`] hook to print all TODOs
+The `todo-branch-tags` is useful as a [`post-checkout`] hook to print all TODOs
 tagged with the ticket reference in the branch name. If you checkout a branch
 called `feature/DEV-4242-bananas`, all `TODO(DEV-4242)` comments will be shown.
 
