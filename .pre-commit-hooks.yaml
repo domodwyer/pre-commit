@@ -38,7 +38,7 @@
   description: "Checks changes contain only TODOs with JIRA tags"
 
 - id: todo-branch-tags
-  name: 'TODOs for the current branch'
+  name: 'Outstanding TODOs for the current branch'
   entry: run-find-branch-todos.sh
   always_run: true
   language: 'script'
