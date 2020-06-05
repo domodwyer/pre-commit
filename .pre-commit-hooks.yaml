@@ -64,3 +64,13 @@
   types: [go]
   language: golang
   pass_filenames: false
+
+- id: rust-clippy
+  name: 'Run clippy lints'
+  entry: run-rust-clippy.sh
+  language: 'script'
+  args: ["--all-targets", "--all-features"]
+  files: Cargo\.toml|\.rs$
+  pass_filenames: false
+  minimum_pre_commit_version: 0.15.0
+  description: 'Run clippy lints against rust code'
