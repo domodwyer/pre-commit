@@ -7,11 +7,12 @@ Hooks:
 * `todo-branch-tags`: show all TODOs tagged with the ticket reference in the branch name
 * `branch-name-check`: checks branch names adhere to the regex `^(feature|bugfix|release|hotfix)\/.+`
 * `go-test`: runs `go test ./...` at the repo root
-* `goimports`: ensure all the Go imports are included and ordered
 * `go-dep-check`: ensure all your 3rd party Go packages are vendored (see [dep])
+* `goimports`: ensure all the Go imports are included and ordered
 * `golangci-lint`: a copy of the [official lint
   config](https://github.com/golangci/golangci-lint/commit/09677d574ea6cd05141022aa90b88b6598bfa1a1)
   without forcing the `--fix` argument
+* `rust-clippy`: runs `cargo clippy` lints in the repo root
 
 ## Example config
 
@@ -52,6 +53,9 @@ repos:
         stages: [commit, push]
         types: [go]
         exclude: \.pb.go$
+      
+      - id: rust-clippy
+        stages: [commit, push]
 ```
 
 ## Tagged TODOs
