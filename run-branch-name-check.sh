@@ -4,7 +4,7 @@ LC_ALL=C
 
 local_branch="$(git rev-parse --abbrev-ref HEAD)"
 
-valid_branch_regex="^(feature|bugfix|release|hotfix)\/.+"
+valid_branch_regex=${1:-"^(feature|bugfix|release|hotfix)\/.+"}
 
 message="There is something wrong with your branch name. Branch names in this project must adhere to this contract: $valid_branch_regex."
 
