@@ -13,6 +13,7 @@ Hooks:
   config](https://github.com/golangci/golangci-lint/commit/09677d574ea6cd05141022aa90b88b6598bfa1a1)
   without forcing the `--fix` argument
 * `rust-clippy`: runs `cargo clippy` lints in the repo root
+* `r-stylr`: runs [`stylr`] to format R code
 
 ## Example config
 
@@ -56,6 +57,9 @@ repos:
       
       - id: rust-clippy
         stages: [commit, push]
+      
+      - id: r-stylr
+        stages: [commit, push]
 ```
 
 ## Tagged TODOs
@@ -94,3 +98,4 @@ When adding new hooks you can run `pre-commit try-repo .` for a quick syntax che
 [`pre-commit`]: https://pre-commit.com
 [dep]: https://github.com/golang/dep
 [`post-checkout`]: https://git-scm.com/docs/githooks#_post_checkout
+[`stylr`]: https://styler.r-lib.org/

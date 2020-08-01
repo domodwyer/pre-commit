@@ -74,3 +74,12 @@
   pass_filenames: false
   minimum_pre_commit_version: 0.15.0
   description: 'Run clippy lints against rust code'
+
+- id: r-stylr
+  name: 'Format with stylr'
+  entry: run-r-stylr.R
+  language: 'script'
+  files: (?i)\.R$
+  pass_filenames: true
+  minimum_pre_commit_version: 0.15.0
+  description: 'Run stylr to format R code'
