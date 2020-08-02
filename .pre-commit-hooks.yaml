@@ -83,3 +83,12 @@
   pass_filenames: true
   minimum_pre_commit_version: 0.15.0
   description: 'Run stylr to format R code'
+
+- id: r-lintr
+  name: 'Analyse with lintr'
+  entry: run-r-lintr.R
+  language: 'script'
+  files: (?i)\.R$
+  pass_filenames: true
+  minimum_pre_commit_version: 0.15.0
+  description: 'Run lintr against R code'

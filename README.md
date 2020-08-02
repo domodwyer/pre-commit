@@ -14,6 +14,7 @@ Hooks:
   without forcing the `--fix` argument
 * `rust-clippy`: runs `cargo clippy` lints in the repo root
 * `r-stylr`: runs [`stylr`] to format R code
+* `r-lintr`: static analysis of R code with [`lintr`]
 
 ## Example config
 
@@ -60,6 +61,9 @@ repos:
       
       - id: r-stylr
         stages: [commit, push]
+      
+      - id: r-lintr
+        stages: [commit, push]
 ```
 
 ## Tagged TODOs
@@ -99,3 +103,4 @@ When adding new hooks you can run `pre-commit try-repo .` for a quick syntax che
 [dep]: https://github.com/golang/dep
 [`post-checkout`]: https://git-scm.com/docs/githooks#_post_checkout
 [`stylr`]: https://styler.r-lib.org/
+[`lintr`]: https://github.com/jimhester/lintr
