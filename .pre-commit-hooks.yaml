@@ -47,13 +47,13 @@
   description: 'Prints any TODOs tagged with the ticket reference in the current branch name'
 
 - id: branch-name-check
-  name: 'Checks branch names obeys the following regex: ^(feature|bugfix|release|hotfix)\/.+'
+  name: 'Checks branch name obeys the standardised format'
   entry: run-branch-name-check.sh
   always_run: true
   pass_filenames: false
   language: 'script'
   minimum_pre_commit_version: 0.15.0
-  description: 'Checks branch names obeys the following regex: ^(feature|bugfix|release|hotfix)\/.+'
+  description: 'Checks branch names obeys the following regex'
 
 # A copy of
 # https://github.com/golangci/golangci-lint/commit/09677d574ea6cd05141022aa90b88b6598bfa1a1
