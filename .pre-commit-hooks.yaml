@@ -1,32 +1,3 @@
-- id: go-test
-  name: 'Go tests'
-  entry: run-go-test.sh
-  types: [go]
-  language: 'script'
-  pass_filenames: false
-  minimum_pre_commit_version: 0.15.0
-  description: "Runs `go test ./...` at the repo root"
-
-- id: goimports
-  name: 'Check Go imports'
-  entry: run-go-imports.sh
-  types: [go]
-  language: 'script'
-  pass_filenames: true
-  minimum_pre_commit_version: 0.15.0
-  description: "Runs `goimports` on changed files"
-  require_serial: true
-  exclude: 'vendor/'
-
-- id: go-dep-check
-  name: 'dep-check'
-  entry: run-dep-check.sh
-  types: [go]
-  language: 'script'
-  pass_filenames: false
-  minimum_pre_commit_version: 0.15.0
-  description: "Runs `dep check`, ensuring all imports are vendored"
-
 - id: todo-tagged-jira
   name: 'TODOs have JIRA tags'
   entry: todo-jira-check.py
@@ -47,7 +18,7 @@
   description: 'Prints any TODOs tagged with the ticket reference in the current branch name'
 
 - id: branch-name-check
-  name: 'Checks branch name obeys the standardised format'
+  name: 'Branch name obeys the standardised format'
   entry: run-branch-name-check.sh
   always_run: true
   pass_filenames: false
@@ -55,11 +26,40 @@
   minimum_pre_commit_version: 0.15.0
   description: 'Checks branch names obeys the following regex'
 
+- id: go-test
+  name: 'Go tests'
+  entry: run-go-test.sh
+  types: [go]
+  language: 'script'
+  pass_filenames: false
+  minimum_pre_commit_version: 0.15.0
+  description: "Runs `go test ./...` at the repo root"
+
+- id: go-goimports
+  name: 'Check Go imports'
+  entry: run-go-imports.sh
+  types: [go]
+  language: 'script'
+  pass_filenames: true
+  minimum_pre_commit_version: 0.15.0
+  description: "Runs `goimports` on changed files"
+  require_serial: true
+  exclude: 'vendor/'
+
+- id: go-dep-check
+  name: 'Dependencies are vendored (dep)'
+  entry: run-dep-check.sh
+  types: [go]
+  language: 'script'
+  pass_filenames: false
+  minimum_pre_commit_version: 0.15.0
+  description: "Runs `dep check`, ensuring all imports are vendored"
+
 # A copy of
 # https://github.com/golangci/golangci-lint/commit/09677d574ea6cd05141022aa90b88b6598bfa1a1
 # without --fix forced on users.
-- id: golangci-lint
-  name: golangci-lint
+- id: go-golangci-lint
+  name: 'Run golangci-lint'
   description: Static analysis for Go code
   entry: golangci-lint run
   types: [go]
@@ -74,6 +74,15 @@
   pass_filenames: false
   minimum_pre_commit_version: 0.15.0
   description: 'Run clippy lints against rust code'
+
+- id: rust-test
+  name: 'Cargo tests'
+  entry: run-rust-tests.sh
+  language: 'script'
+  files: \.rs$
+  pass_filenames: false
+  minimum_pre_commit_version: 0.15.0
+  description: 'Run cargo test in the repo root'
 
 - id: r-stylr
   name: 'Format with stylr'

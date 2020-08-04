@@ -1,6 +1,6 @@
 # pre-commit
 
-This is a set of [`pre-commit`] hooks for (primarily Go) development.
+This is a set of [`pre-commit`] hooks for development across multiple languages.
 
 Hooks:
 * `todo-tagged-jira`: ensure all TODO comments reference a JIRA ticket
@@ -8,11 +8,12 @@ Hooks:
 * `branch-name-check`: checks branch names adhere to the regex `^(feature|bugfix|release|hotfix)\/.+`
 * `go-test`: runs `go test ./...` at the repo root
 * `go-dep-check`: ensure all your 3rd party Go packages are vendored (see [dep])
-* `goimports`: ensure all the Go imports are included and ordered
-* `golangci-lint`: a copy of the [official lint
+* `go-goimports`: ensure all the Go imports are included and ordered
+* `go-golangci-lint`: a copy of the [official lint
   config](https://github.com/golangci/golangci-lint/commit/09677d574ea6cd05141022aa90b88b6598bfa1a1)
   without forcing the `--fix` argument
 * `rust-clippy`: runs `cargo clippy` lints in the repo root
+* `rust-test`: runs `cargo test` at the repo root, includes all targets/features/examples/benches
 * `r-stylr`: runs [`stylr`] to format R code
 * `r-lintr`: static analysis of R code with [`lintr`]
 
@@ -40,7 +41,7 @@ repos:
         exclude: \.pb.go$                  # Ignore generated protobuf files
         args: ["-timeout=30s"]             # Set a deadline (fast tests == happy developers)
       
-      - id: goimports
+      - id: go-goimports
         stages: [commit, push, manual]
         types: [go]
         exclude: \.pb.go$                  # Ignore generated protobuf files
@@ -50,13 +51,20 @@ repos:
         stages: [push, manual]
         types: [go]
       
-      - id: golangci-lint
+      - id: go-golangci-lint
         args: [--new-from-rev=origin/master]
         stages: [commit, push]
         types: [go]
         exclude: \.pb.go$
       
       - id: rust-clippy
+        #args: [                           # Optionally override default configured lints
+        #  "-D rust_2018_idioms",
+        #  "-D missing_docs",
+        #]
+        stages: [commit, push]
+      
+      - id: rust-test
         stages: [commit, push]
       
       - id: r-stylr
