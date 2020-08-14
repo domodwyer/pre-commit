@@ -13,18 +13,38 @@ import argparse
 import re
 import sys
 
+DEFAULT_TAG = "DEV"
+
 parser = argparse.ArgumentParser()
-parser.add_argument('-t', '--tag', type=str,
-                    help="The JIRA tag (i.e. DEV) to search for", default="DEV", dest='tag')
+parser.add_argument('-t', '--tag', 
+                    type=str,
+                    help="A JIRA-like tag (i.e. DEV) to search for", 
+                    default=DEFAULT_TAG, 
+                    dest='tag')
+					
+parser.add_argument('-r', '--regex', 
+					type=str,
+                    help="Specify the regex to match inner in TODO(inner)",
+                    dest='regex')
+
 parser.add_argument('files', metavar='FILES', type=str, nargs='+',
                     help='Files to search')
 
 args = parser.parse_args()
 
+# Do not allow specifying a tag and --regex
+if args.regex and args.tag != DEFAULT_TAG:
+	sys.exit("cannot provide tag with --regex")
+
+# Figure out what regex to use
+tag = args.tag + "-[0-9]+"
+if args.regex:
+	tag = args.regex
+
 # This regex matches all TODO comments (prefixed by // or #) that are not
-# immediately followed by "($TAG-0000)"
+# immediately followed by "($TAG)"
 pattern = re.compile(
-    r"(\/\/|#)+\s?TODO((?!\("+args.tag+r"-[0-9]+\)).)*$", re.IGNORECASE)
+    r"(\/\/|#)+\s?TODO((?!\("+tag+r"\)).)*$", re.IGNORECASE)
 
 ret = 0
 for f in args.files:

@@ -1,6 +1,6 @@
-- id: todo-tagged-jira
-  name: 'TODOs have JIRA tags'
-  entry: todo-jira-check.py
+- id: todo-tags
+  name: 'TODOs have tags'
+  entry: todo-tags.py
   types: [text]
   language: 'script'
   pass_filenames: true

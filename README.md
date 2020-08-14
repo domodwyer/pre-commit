@@ -3,7 +3,7 @@
 This is a set of [`pre-commit`] hooks for development across multiple languages.
 
 Hooks:
-* `todo-tagged-jira`: ensure all TODO comments reference a JIRA ticket
+* `todo-tags`: ensure all TODO comments reference a JIRA ticket (or any regex matcher)
 * `todo-branch-tags`: show all TODOs tagged with the ticket reference in the branch name
 * `branch-name-check`: checks branch names adhere to the regex `^(feature|bugfix|release|hotfix)\/.+`
 * `go-test`: runs `go test ./...` at the repo root
@@ -24,9 +24,10 @@ repos:
   - repo: https://github.com/domodwyer/pre-commit
     rev: master
     hooks:
-      - id: todo-tagged-jira               # Requires python
+      - id: todo-tags                      # Requires python
         stages: [commit, push, manual]
         args: ["--tag=DEV"]                # JIRA ticket tag (defaults to DEV)
+        # args: ["--regex='.*'"]           # Or specify your own regex
       
       - id: todo-branch-tags
         stages: [post-checkout, manual]    # Show tags when checking out
@@ -79,10 +80,19 @@ repos:
 New TODOs introduced into the codebase should be tracked in JIRA so they're
 eventually done!
 
-The `todo-tagged-jira` hook searches changed files for `TODO` comments (lines
-prefixed by `#` or `//`) that do not reference a JIRA ticket. A valid TODO is in
-the form: `TODO(DEV-4242)`, where the `DEV` tag is configurable, and `4242` is
-the ticket number.
+The `todo-tags` hook searches changed files for `TODO` comments (lines prefixed
+by `#` or `//`) that do not reference a JIRA ticket. A valid TODO is in the
+form: `TODO(DEV-4242)`, where the `DEV` tag is configurable, and `4242` is the
+ticket number.
+
+Instead for more flexibility, you can specify a custom regex to validate TODO
+tags with instead:
+
+```yaml
+      - id: todo-tags
+        stages: [commit, push, manual]
+        args: ["--regex='(dom|clive)'"] 
+```
 
 The `todo-branch-tags` is useful as a [`post-checkout`] hook to print all TODOs
 tagged with the ticket reference in the branch name. If you checkout a branch
