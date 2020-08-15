@@ -11,6 +11,7 @@ default_lints=(
 	"-D clippy::doc_markdown" 
 	"-D clippy::indexing_slicing" 
 	"-D clippy::todo" 
+	"-D clippy::dbg_macro" 
 	"-D clippy::unimplemented" 
 	"-D clippy::await_holding_lock" 
 )
