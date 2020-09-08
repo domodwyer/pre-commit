@@ -13,7 +13,8 @@ default_lints=(
 	"-D clippy::todo" 
 	"-D clippy::dbg_macro" 
 	"-D clippy::unimplemented" 
-	"-D clippy::await_holding_lock" 
+	"-D clippy::await_holding_lock"
+	"-D clippy::match-like-matches-macro" 
 )
 
 # Use the lints passed as arguments, or the default above.
