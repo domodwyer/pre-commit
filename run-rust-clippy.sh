@@ -20,4 +20,4 @@ default_lints=(
 # Use the lints passed as arguments, or the default above.
 lints=${*:-${default_lints[*]}}
 
-cargo clippy --all-targets --all-features -- -D warnings ${lints}
+cargo clippy --all-targets --all-features --workspace -- -D warnings ${lints}
