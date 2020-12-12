@@ -66,6 +66,15 @@
   language: golang
   pass_filenames: false
 
+- id: rust-check
+  name: 'Run cargo check'
+  entry: run-rust-check.sh
+  language: 'script'
+  files: Cargo\.toml|\.rs$
+  pass_filenames: false
+  minimum_pre_commit_version: 0.15.0
+  description: 'Run cargo check against all features & targets'
+
 - id: rust-clippy
   name: 'Run clippy lints'
   entry: run-rust-clippy.sh
@@ -79,7 +88,7 @@
   name: 'Cargo tests'
   entry: run-rust-tests.sh
   language: 'script'
-  files: \.rs$
+  files: Cargo\.toml|\.rs$
   pass_filenames: false
   minimum_pre_commit_version: 0.15.0
   description: 'Run cargo test in the repo root'
