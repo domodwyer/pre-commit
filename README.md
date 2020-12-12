@@ -12,7 +12,7 @@ Hooks:
 * `go-golangci-lint`: a copy of the [official lint
   config](https://github.com/golangci/golangci-lint/commit/09677d574ea6cd05141022aa90b88b6598bfa1a1)
   without forcing the `--fix` argument
-* `rust-check`: runs `cargo check` lints against all features & targets
+* `rust-check`: runs `cargo check` against all features & targets
 * `rust-clippy`: runs `cargo clippy` lints in the repo root
 * `rust-test`: runs `cargo test` at the repo root, includes all targets/features/examples/benches
 * `r-stylr`: runs [`stylr`] to format R code
