@@ -2,4 +2,5 @@
 
 set -euo pipefail
 
-cargo test --all-features --all --bins --tests --examples --benches --all-targets "$@"
+# Effectively "--all-targets" but without --benches
+cargo test --all-features --workspace --lib --bins --examples --tests "$@"
