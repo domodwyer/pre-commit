@@ -9,7 +9,6 @@ default_lints=(
 	"-D missing_docs"
 	"-A clippy::missing_docs_in_private_items" 
 	"-D clippy::doc_markdown" 
-	"-D clippy::indexing_slicing" 
 	"-D clippy::todo" 
 	"-D clippy::dbg_macro" 
 	"-D clippy::unimplemented" 
