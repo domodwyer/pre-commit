@@ -73,6 +73,9 @@ repos:
       - id: rust-test
         stages: [commit, push]
       
+      - id: rust-fmt
+        stages: [commit, push]
+      
       - id: r-stylr
         stages: [commit, push]
       
