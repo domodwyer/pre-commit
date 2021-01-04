@@ -15,6 +15,7 @@ Hooks:
 * `rust-check`: runs `cargo check` against all features & targets
 * `rust-clippy`: runs `cargo clippy` lints in the repo root
 * `rust-test`: runs `cargo test` at the repo root, includes all targets/features/examples/benches
+* `rust-fmt`: runs `cargo fmt --all`
 * `r-stylr`: runs [`stylr`] to format R code
 * `r-lintr`: static analysis of R code with [`lintr`]
 

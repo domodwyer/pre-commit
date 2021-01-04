@@ -67,7 +67,7 @@
   pass_filenames: false
 
 - id: rust-check
-  name: 'Run cargo check'
+  name: 'Cargo check'
   entry: run-rust-check.sh
   language: 'script'
   files: Cargo\.toml|\.rs$
@@ -76,7 +76,7 @@
   description: 'Run cargo check against all features & targets'
 
 - id: rust-clippy
-  name: 'Run clippy lints'
+  name: 'Clippy lints'
   entry: run-rust-clippy.sh
   language: 'script'
   files: Cargo\.toml|\.rs$
@@ -92,6 +92,15 @@
   pass_filenames: false
   minimum_pre_commit_version: 0.15.0
   description: 'Run cargo test in the repo root'
+
+- id: rust-fmt
+  name: 'Cargo fmt'
+  entry: run-rust-fmt.sh
+  language: 'script'
+  files: \.rs$
+  pass_filenames: false
+  minimum_pre_commit_version: 0.15.0
+  description: 'Run cargo fmt in the repo root'
 
 - id: r-stylr
   name: 'Format with stylr'
