@@ -15,4 +15,4 @@ set -euo pipefail
 # "-D clippy::await_holding_lock"
 # "-D clippy::match-like-matches-macro" 
 
-cargo clippy --all-targets --all-features -- -D warnings "$@"
+cargo clippy --all-targets --all-features --all -- -D warnings "$@"
