@@ -18,6 +18,8 @@ Hooks:
 * `rust-fmt`: runs `cargo fmt --all`
 * `r-stylr`: runs [`stylr`] to format R code
 * `r-lintr`: static analysis of R code with [`lintr`]
+* `buf-lint`: runs [`buf`] lints against protobuf files
+* `buf-breaking`: protobuf breaking change detection using [`buf`]
 
 ## Example config
 
@@ -64,7 +66,7 @@ repos:
         stages: [commit, push]
       
       - id: rust-clippy
-        #args: [                           # Optionally override default configured lints
+        # args: [                          # Optionally override default configured lints
         #  "-D rust_2018_idioms",
         #  "-D missing_docs",
         #]
@@ -80,6 +82,15 @@ repos:
         stages: [commit, push]
       
       - id: r-lintr
+        stages: [commit, push]
+        stages: [commit, push]
+      
+      - id: buf-lint
+        stages: [commit, push]
+      
+      - id: buf-breaking
+        # Checks against 'master' branch by defaut, change with:
+        # args: [".git#tag=v1.0.0"]
         stages: [commit, push]
 ```
 
@@ -130,3 +141,4 @@ When adding new hooks you can run `pre-commit try-repo .` for a quick syntax che
 [`post-checkout`]: https://git-scm.com/docs/githooks#_post_checkout
 [`stylr`]: https://styler.r-lib.org/
 [`lintr`]: https://github.com/jimhester/lintr
+[`buf`]: https://buf.build/

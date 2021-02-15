@@ -119,3 +119,21 @@
   pass_filenames: true
   minimum_pre_commit_version: 0.15.0
   description: 'Run lintr against R code'
+
+- id: buf-lint
+  name: 'Lint protobuf files'
+  entry: buf-lint.sh
+  types: [proto]
+  language: 'script'
+  pass_filenames: false
+  minimum_pre_commit_version: 0.15.0
+  description: "Runs buf lint at the repo root"
+
+- id: buf-breaking
+  name: 'Check protobuf for breaking changes'
+  entry: buf-breaking.sh
+  types: [proto]
+  language: 'script'
+  pass_filenames: false
+  minimum_pre_commit_version: 0.15.0
+  description: "Runs buf breaking at the repo root"
