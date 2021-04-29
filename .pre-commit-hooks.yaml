@@ -102,6 +102,15 @@
   minimum_pre_commit_version: 0.15.0
   description: 'Run cargo fmt in the repo root'
 
+- id: rust-doc
+  name: 'Cargo doc'
+  entry: run-rust-doc.sh
+  language: 'script'
+  files: \.rs$
+  pass_filenames: false
+  minimum_pre_commit_version: 0.15.0
+  description: 'Run cargo doc against public & private items'
+
 - id: r-stylr
   name: 'Format with stylr'
   entry: run-r-stylr.R

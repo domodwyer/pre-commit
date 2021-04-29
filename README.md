@@ -16,6 +16,7 @@ Hooks:
 * `rust-clippy`: runs `cargo clippy` lints in the repo root
 * `rust-test`: runs `cargo test` at the repo root, includes all targets/features/examples/benches
 * `rust-fmt`: runs `cargo fmt --all`
+* `rust-doc`: runs `cargo doc` against the workspace - great for linting [intra-doc links]
 * `r-stylr`: runs [`stylr`] to format R code
 * `r-lintr`: static analysis of R code with [`lintr`]
 * `buf-lint`: runs [`buf`] lints against protobuf files
@@ -77,6 +78,9 @@ repos:
       
       - id: rust-fmt
         stages: [commit, push]
+      
+      - id: rust-doc
+        stages: [push]
       
       - id: r-stylr
         stages: [commit, push]
@@ -142,3 +146,4 @@ When adding new hooks you can run `pre-commit try-repo .` for a quick syntax che
 [`stylr`]: https://styler.r-lib.org/
 [`lintr`]: https://github.com/jimhester/lintr
 [`buf`]: https://buf.build/
+[intra-doc links]: https://doc.rust-lang.org/rustdoc/lints.html#broken_intra_doc_links  
