@@ -19,6 +19,7 @@ Hooks:
 * `rust-doc`: runs `cargo doc` against the workspace - great for linting [intra-doc links]
 * `r-stylr`: runs [`stylr`] to format R code
 * `r-lintr`: static analysis of R code with [`lintr`]
+* `r-readme`: ensure README.Rmd changes are rendered to README.md
 * `buf-lint`: runs [`buf`] lints against protobuf files
 * `buf-breaking`: protobuf breaking change detection using [`buf`]
 
@@ -87,6 +88,8 @@ repos:
       
       - id: r-lintr
         stages: [commit, push]
+      
+      - id: r-readme
         stages: [commit, push]
       
       - id: buf-lint

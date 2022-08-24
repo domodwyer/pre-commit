@@ -129,6 +129,15 @@
   minimum_pre_commit_version: 0.15.0
   description: 'Run lintr against R code'
 
+- id: r-readme
+  name: 'Generated README.Rmd'
+  entry: run-r-readme.sh
+  language: 'script'
+  files: README\.Rmd$
+  pass_filenames: false
+  minimum_pre_commit_version: 0.15.0
+  description: 'Check README.md in-sync with README.Rmd'
+
 - id: buf-lint
   name: 'Lint protobuf files'
   entry: buf-lint.sh
