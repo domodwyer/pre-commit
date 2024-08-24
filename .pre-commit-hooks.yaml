@@ -155,3 +155,12 @@
   pass_filenames: false
   minimum_pre_commit_version: 0.15.0
   description: "Runs buf breaking at the repo root"
+
+- id: rust-doc-backticks
+  name: "rustdoc backticks"
+  entry: run-rust-backticks.sh
+  language: "script"
+  files: \.rs$
+  pass_filenames: true
+  minimum_pre_commit_version: 0.15.0
+  description: "Check for empty backtick pairs"
