@@ -6,7 +6,13 @@
 
 set -euo pipefail
 
-srgn -j --fail-no-files -G "$@" \
+STDOUT=$(srgn -j --fail-no-files \
 	--rust doc-comments \
 	--rust comments \
-	'[^`]`{2}[^`]+'
+	'[^`]`{2}[^`]+')
+
+if [[ -n $STDOUT ]]
+then
+    printf -- "%s\n" "$STDOUT"
+	exit 1;
+fi

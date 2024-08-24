@@ -161,6 +161,6 @@
   entry: run-rust-backticks.sh
   language: "script"
   files: \.rs$
-  pass_filenames: true
+  pass_filenames: false
   minimum_pre_commit_version: 0.15.0
   description: "Check for empty backtick pairs"
